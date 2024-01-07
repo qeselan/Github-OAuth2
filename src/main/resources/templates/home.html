@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>OAuth2 Sample App - Github</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{css/style.css}"/>
+</head>
+<body>
+  <h3>Welcome to the Github OAuth2 Sample App!</h3>
+  Before using this app, please make sure you do the following:
+  <ul>
+    <li>
+      Update application.properties with your Client ID and Client Secret (found on
+      <a href="https://github.com/settings/apps">github.com</a>
+      )
+    </li>
+
+    <li>
+      In <a href="https://github.com/settings/apps">github.com</a>,
+      add an allowed Redirect URI to this sample app! (application.properties - OAuth2AppRedirectUri value:
+      <a href="http://localhost:8080/oauth2redirect">http://localhost:8080/oauth2redirect</a>
+      )
+    </li>
+  </ul>
+  <br /><br /><br />
+
+  <!-- Sign In With Github Button -->
+  <b>Sign In With Github</b><br />
+  <a class="imgLink" th:onclick="'launchPopup(\'signInWithGithub\');'" href="#">
+    Sign In
+  </a>
+  <br /><br /><br />
+
+  <br /><br /><br />
+  
+  <script>
+  function launchPopup(path) {
+    var win;
+    var checkConnect;
+    var parameters = "location=1,width=800,height=650";
+    parameters += ",left=" + (screen.width - 800) / 2 + ",top=" + (screen.height - 650) / 2;
+    // Launch Popup
+    win = window.open(path, 'connectPopup', parameters);
+  }
+</script>
+
+</body>
+</html>

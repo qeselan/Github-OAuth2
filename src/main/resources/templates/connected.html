@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>OAuth2 Sample App - Github</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{css/style.css}"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+    if(window.opener) {
+      window.opener.location.href = '/connected'
+      window.close()
+    }
+    function getUserEmails() {
+      $("#result").html('Loading...')
+      $.get("/user/emails", function(data) {
+        data.forEach((v) => console.log(v));
+        // const resultString = data.map(e => e.values().join("/")).join(', ');
+        $("#result").html(resultString)
+      })
+    }
+  </script>
+</head>
+<body>
+  <a href="/">Home</a>
+  <h3>Connected!</h3>
+  <div th:with="firstPer=${session.givenName}">
+	
+	    <p>Welcome <span th:text="${firstPer}" />!</p>
+  		<p>Would you like to make a sample API call?</p>
+	  
+  </div>
+  
+  <div>
+    <button onclick="getUserEmails()">Get User Emails</button>
+    <br /><br />
+    <div><code id="result"></code></div>
+    </div>
+</body>
+</html>
